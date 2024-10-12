@@ -5,6 +5,9 @@ import {
   SignedOut,
   UserButton
 } from '@clerk/nextjs'
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { extractRouterConfig } from "uploadthing/server";
+import { ourFileRouter } from "@/app/api/uploadthing/core";
 import './globals.css'
 
 export default function RootLayout({
@@ -15,6 +18,9 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
+        <NextSSRPlugin
+          routerConfig={extractRouterConfig(ourFileRouter)}
+        />
         <body>
           {children}
         </body>
