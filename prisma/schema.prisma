@@ -9,41 +9,36 @@ datasource db {
 }
 
 model Category {
-  id String @id @default(uuid())
-  name String @unique
+  id      String   @id @default(uuid())
+  name    String   @unique
   courses Course[]
 }
 
 model Course {
-  id String @id @default(uuid())
-  userId String
-  title String @db.Text
-  description String? @db.Text
-  imageUrl String? @db.Text
-  price Float?
-  isPublished Boolean @default(false)
-
-  categoryId String?
-  category Category? @relation(fields: [categoryId], references: [id])
-
+  id          String       @id @default(uuid())
+  userId      String
+  title       String
+  description String?
+  imageUrl    String?
+  price       Float?
+  isPublished Boolean      @default(false)
+  categoryId  String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
   attachments Attachment[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  category    Category?    @relation(fields: [categoryId], references: [id])
 
   @@index([categoryId])
 }
 
 model Attachment {
-  id String @id @default(uuid())
-  name String
-  url String @db.Text
-
-  courseId String
-  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
-
+  id        String   @id @default(uuid())
+  name      String
+  url       String
+  courseId  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   @@index([courseId])
 }
