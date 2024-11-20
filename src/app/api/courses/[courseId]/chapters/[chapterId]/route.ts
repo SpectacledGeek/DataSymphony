@@ -52,7 +52,7 @@ export async function PATCH(
       });
 
       if (existingVideo) {
-        await video.assets.delete(existingVideo.id);
+        await Video.assets.delete(existingVideo.id);
         await db.muxData.delete({
           where: {
             id: existingVideo.id,
@@ -60,7 +60,7 @@ export async function PATCH(
         });
       }
 
-      const asset = await video.assets.create({
+      const asset = await Video.Assets.create({
         input: values.videoUrl,
         playback_policy: ["public"],
       });
