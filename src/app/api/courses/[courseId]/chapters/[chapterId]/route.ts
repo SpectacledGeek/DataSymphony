@@ -3,10 +3,13 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import Mux from "@mux/mux-node";
 
-const { video } = new Mux(
-  process.env.MUX_TOKEN_ID!,
-  process.env.MUX_TOKEN_SECRET!,
-};
+const muxTokenId = process.env.MUX_TOKEN_ID;
+const muxTokenSecret = process.env.MUX_TOKEN_SECRET;
+
+const { video } = new Mux({
+  tokenId: muxTokenId,
+  tokenSecret: muxTokenSecret,
+});
 
 export async function PATCH(
   req: Request,
@@ -59,14 +62,14 @@ export async function PATCH(
 
       const asset = await video.assets.create({
         input: values.videoUrl,
-        playback_policy: "public",
+        playback_policy: ["public"],
       });
 
       await db.muxData.create({
         data: {
           chapterId: params.chapterId,
-          videoId: asset.id,
-          playbackId: asset.playback_ids[0].id,
+          assetId: asset.id,
+          playbackId: asset.playback_ids ? asset.playback_ids[0].id : null,
         },
       });
     }
