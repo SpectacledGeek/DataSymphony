@@ -3,10 +3,10 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import Mux from "@mux/mux-node";
 
-const { video } = new Mux(
+const { Video } = new Mux(
   process.env.MUX_TOKEN_ID!,
-  process.env.MUX_TOKEN_SECRET!,
-};
+  process.env.MUX_TOKEN_SECRET!
+);
 
 export async function PATCH(
   req: Request,
@@ -49,7 +49,7 @@ export async function PATCH(
       });
 
       if (existingVideo) {
-        await video.assets.delete(existingVideo.id);
+        await Video.assets.delete(existingVideo.id);
         await db.muxData.delete({
           where: {
             id: existingVideo.id,
@@ -57,16 +57,17 @@ export async function PATCH(
         });
       }
 
-      const asset = await video.assets.create({
+      const asset = await Video.Assets.create({
         input: values.videoUrl,
         playback_policy: "public",
+        test: false,
       });
 
       await db.muxData.create({
         data: {
           chapterId: params.chapterId,
-          videoId: asset.id,
-          playbackId: asset.playback_ids[0].id,
+          assetId: asset.id,
+          playbackId: asset.playback_ids?.[0]?.id,
         },
       });
     }
