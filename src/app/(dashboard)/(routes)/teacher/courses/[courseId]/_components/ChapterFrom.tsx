@@ -38,7 +38,7 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
   const router = useRouter();
 
   const toggleCreating = () => {
-    setIsCreating(!isCreating);
+    setIsCreating((current) => !current);
   };
 
   const form = useForm<TformSchema>({
@@ -67,10 +67,9 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
   const onReorder = async (updateData: { id: string; position: number }[]) => {
     try {
       setIsUpdating(true);
-      await axios.put(`/api/courses/${courseId}/chapters/reorder`),
-        {
-          lsit: updateData,
-        };
+      await axios.put(`/api/courses/${courseId}/chapters/reorder`, {
+        list: updateData,
+      });
       toast.success("Chapters Reordered");
       router.refresh();
     } catch (error) {
@@ -142,7 +141,7 @@ const ChapterForm = ({ initialData, courseId }: ChapterFormProps) => {
         >
           {!initialData.chapters.length && "No Chapters"}
           <ChapterList
-            onEdit={() => {}}
+            onEdit={onEdit}
             onReorder={onReorder}
             items={initialData.chapters || []}
           />
