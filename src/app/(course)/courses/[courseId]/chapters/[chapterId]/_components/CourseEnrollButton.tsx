@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { formatPrice } from "@/lib/format"
 import axios from "axios"

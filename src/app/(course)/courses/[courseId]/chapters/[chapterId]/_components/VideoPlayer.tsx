@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import { Loader2, Lock } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { useConfettiStore } from "@/hooks/use-confetti-store";
 
 
 interface VideoPlayerProps {
@@ -32,17 +31,12 @@ const VideoPlayer = ({
 }: VideoPlayerProps) => {
     const [isReady, setIsReady] = useState(false);
     const router = useRouter();
-    const confetti = useConfettiStore();
 
     const onEnd = async () => {
       try {
         await axios.put(`/api/courses/${courseId}/chapters/${chapterId}/progress`, {
           isCompleted: true,
         });
-        
-        if (!nextChapterId) {
-          confetti.onOpen();
-        }
         
         toast.success("Progress updated");
         router.refresh();  

@@ -6,6 +6,8 @@ import CourseEnrollButton from "./_components/CourseEnrollButton";
 import { Separator } from "@/components/ui/separator";
 import { File } from "lucide-react";
 import CourseProgressButton from "./_components/CourseProgressButton";
+import { Banner } from "@/components/Banner";
+import { Preview } from "@/components/preview";
 
 const ChapterIdPage = async ({
     params
@@ -85,7 +87,7 @@ const ChapterIdPage = async ({
                 </div>
                 <Separator />
                 <div>
-                    <Preview value={chapter.description} />
+                    <Preview value={chapter.description!} />
                 </div>
                 {!!attachments.length && (
                     <>
