@@ -1,36 +1,138 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Data Symphony 📖
 
-## Getting Started
+A dynamic e-learning platform built with Next.js and Supabase, enabling seamless course creation, management, and enrollment with support for multiple content types.
+[Video Demo Link](https://drive.google.com/file/d/1uFZEQ_C_X6q5i6JXKOJeLHpMYellXKia/view?usp=sharing)
 
-First, run the development server:
+## 🌟 Features
 
+- **Course Management**
+  - Create and manage courses with rich multimedia content
+  - Upload and organize videos, PDFs, and presentations
+  - Track course progress and completion status
+  - Real-time updates on course activities
+
+- **Dual Role System**
+  - Users can be both teachers and students
+  - Seamless switching between teaching and learning modes
+  - Personalized dashboards for each role
+
+- **Content Delivery**
+  - High-performance video streaming with Mux
+  - Secure file storage with Uploadthing
+  - Support for multiple content formats
+  - Progressive loading for optimal performance
+
+- **User Authentication**
+  - Secure authentication with Clerk
+  - Role-based access control
+  - Protected routes and API endpoints
+
+## 🚀 Tech Stack
+
+- **Frontend**
+  - Next.js 14 with App Router
+  - Tailwind CSS for styling
+  - Clerk for authentication
+  - Uploadthing for file handling
+  - Mux for video streaming
+
+- **Backend**
+  - Node.js
+  - Prisma ORM
+  - PostgreSQL database
+  - RESTful APIs
+
+## 📋 Prerequisites
+
+- Node.js >= 16.0.0
+- npm >= 8.0.0
+- PostgreSQL >= 14.0
+- Git
+
+## ⚙️ Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/SpectacledGeek/DataSymphony.git
+cd DataSymphony
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up environment variables:
+```bash
+cp .env.example .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Configure your `.env.local` with:
+```env
+# Database
+DATABASE_URL="postgresql://..."
 
-## Learn More
+# Authentication
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
 
-To learn more about Next.js, take a look at the following resources:
+# File Upload
+UPLOADTHING_SECRET=
+UPLOADTHING_APP_ID=
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Video Streaming
+MUX_TOKEN_ID=
+MUX_TOKEN_SECRET=
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. Run database migrations:
+```bash
+npx prisma migrate dev
+```
 
-## Deploy on Vercel
+6. Start the development server:
+```bash
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎯 Usage
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Creating a Course**
+   - Log in to your account
+   - Navigate to "Teacher Dashboard"
+   - Click "Create New Course"
+   - Add course details and content
+   - Publish when ready
+
+2. **Enrolling in a Course**
+   - Browse available courses
+   - Click "Enroll" on desired course
+   - Access course content immediately
+   - Track progress through dashboard
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+## 👏 Acknowledgments
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS](https://tailwindcss.com)
+- [Clerk Authentication](https://clerk.dev)
+- [Prisma](https://www.prisma.io)
+- [Mux](https://mux.com)
+- [Uploadthing](https://uploadthing.com)
+
+## 📧 Contact
+
+Suryansh Singh - suryanshsingh1807@gmail.com
+
+Project Link: [https://github.com/SpectacledGeek/DataSymphony](https://github.com/SpectacledGeek/DataSymphony)
